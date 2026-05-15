@@ -1,0 +1,48 @@
+# src/recommender.py
+
+
+def get_missing_skills(resume_skills, jobs_df):
+    """
+    Find skills required in jobs but missing in resume
+    """
+
+    # Convert resume skills to lowercase
+    resume_skills = [s.lower().strip() for s in resume_skills]
+
+    # Combine all job skills text
+    job_text = " ".join(jobs_df["skills"].fillna("").tolist()).lower()
+
+    # Global skill database (must match skill_extractor)
+    SKILLS_DB = [
+        "python", "java", "sql", "excel", "html", "css",
+        "machine learning", "deep learning", "nlp",
+        "tensorflow", "pandas", "numpy", "aws", "docker",
+        "git", "linux", "power bi", "tableau"
+    ]
+
+    # Extract skills present in job dataset
+    job_skills = [skill for skill in SKILLS_DB if skill in job_text]
+
+    # Find missing skills
+    missing_skills = [skill for skill in job_skills if skill not in resume_skills]
+
+    return missing_skills
+
+
+def resume_score(top_match_score):
+    """
+    Convert top TF-IDF score into resume score out of 100
+    """
+
+    if top_match_score is None:
+        return 0
+
+    score = int(round(top_match_score))
+
+    # Safety clamp
+    if score > 100:
+        score = 100
+    if score < 0:
+        score = 0
+
+    return score
