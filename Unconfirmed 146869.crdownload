@@ -1,0 +1,10 @@
+import pandas as pd
+
+def load_jobs():
+    return pd.read_csv("data/jobs.csv")
+
+def load_skills():
+    return pd.read_csv("data/skills.csv")
+
+def load_mapping():
+    return pd.read_csv("data/skill_job_mapping.csv")
