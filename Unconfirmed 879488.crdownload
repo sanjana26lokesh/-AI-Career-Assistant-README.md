@@ -1,0 +1,7 @@
+import pandas as pd
+
+jobs = pd.read_csv("data/jobs.csv")
+skills = pd.read_csv("data/skills.csv")
+
+print(jobs.head())
+print(skills.head())
