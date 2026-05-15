@@ -1,0 +1,11 @@
+def extract_skills(text):
+
+    SKILLS_DB = [
+        "python","java","sql","excel","html","css",
+        "machine learning","deep learning","nlp",
+        "tensorflow","pandas","numpy","aws","docker"
+    ]
+
+    text = text.lower()
+
+    return list(set([s for s in SKILLS_DB if s in text]))
