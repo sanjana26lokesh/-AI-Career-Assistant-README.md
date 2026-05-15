@@ -1,0 +1,22 @@
+import pandas as pd
+
+# FIX import
+from src.skill_extractor import extract_skills
+
+# Load datasets
+jobs_df = pd.read_csv("data/jobs.csv")
+skills_df = pd.read_csv("data/skills.csv")
+
+print("Jobs dataset loaded:", jobs_df.shape)
+print("Skills dataset loaded:", skills_df.shape)
+
+# Sample resume
+resume_text = """
+I have experience in Python, Machine Learning, SQL, and Data Analysis.
+Worked with TensorFlow and Pandas.
+"""
+
+# Extract skills
+skills = extract_skills(resume_text)
+
+print("\nExtracted Skills:", skills)
